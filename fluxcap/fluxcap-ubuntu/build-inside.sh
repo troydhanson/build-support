@@ -3,26 +3,52 @@
 # the build is conducted and the resulting
 # products are installed under ${TOP}.
 
-SHR_REV=5a009e01cf7fc47c949a21681f6397e66aba9c3b
-FLUXCAP_REV=56d9b2c55bfaa644e865e16a8c30751df5f7a805
+SHR_REV=88ebce528c2a0cda2c5a00205f3920c921edb978
+FLUXCAP_REV=a20be2417a77eb2f50987da2bfd71aaa4ade4ec0
+LIBUT_REV=e293a1a388340bc5a1c0c542f8ec5d1c8ed85fd7
+TPL_REV=7adbfa38c97c199056e8455803053bbf8e0470e8
+UTHASH_REV=5e8de9e8c9c0b98fe110708fe7a53b2df3a05210
 
 BUILD=/tmp/build.$$
 SRC=/tmp/src.$$
 SHR=${SRC}/shr
 FLUXCAP=${SRC}/fluxcap
 TOP=/opt # install root
+BUNDLES=/tmp/bundles
+
+########################################
+# clone sources
+#
+# this version clones from a saved bundle
+#
+# to make a bundle from the head of an 
+# existing cloned repo you can use 
+# bundle create /tmp/<name>.bundle @
+# However, note that its submodules and
+# and of their recursive submodules need
+# to be bundled and cloned into place too.
+########################################
+tar xf /tmp/bundles.tar -C /tmp
+git clone -b master ${BUNDLES}/shr.bundle ${SHR}
+git clone -b master ${BUNDLES}/fluxcap.bundle ${FLUXCAP}
+git clone -b master ${BUNDLES}/tpl.bundle ${FLUXCAP}/lib/tpl
+git clone -b master ${BUNDLES}/libut.bundle ${FLUXCAP}/lib/libut
+git clone -b master ${BUNDLES}/uthash.bundle ${FLUXCAP}/lib/libut/uthash
 
 ########################################
 # clone sources
 ########################################
-git clone --recursive https://github.com/troydhanson/shr.git ${SHR}
-git clone --recursive https://github.com/troydhanson/fluxcap.git ${FLUXCAP}
+#git clone https://github.com/troydhanson/shr.git ${SHR}
+#git clone --recursive https://github.com/troydhanson/fluxcap.git ${FLUXCAP}
 
 ########################################
 # check out pinned revisions
 ########################################
 (cd ${SHR}; git checkout ${SHR_REV})
 (cd ${FLUXCAP}; git checkout ${FLUXCAP_REV})
+(cd ${FLUXCAP}/lib/tpl; git checkout ${TPL_REV})
+(cd ${FLUXCAP}/lib/libut; git checkout ${LIBUT_REV})
+(cd ${FLUXCAP}/lib/libut/uthash; git checkout ${UTHASH_REV})
 
 ########################################
 # conduct builds outside of source trees

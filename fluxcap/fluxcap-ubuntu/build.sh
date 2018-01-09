@@ -1,9 +1,10 @@
 #!/bin/bash
 
+tar cf bundles.tar -C ../.. bundles
 docker build -t fluxcap .
 
 echo "If the build completed successfully you can now pick up the"
-echo "build products from ${TOP} which is configured as /opt."
+echo "build products from \${TOP} which is configured as /opt."
 echo
 echo "To explore the build container:"
 echo "docker run -ti fluxcap /bin/bash"

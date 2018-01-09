@@ -3,7 +3,7 @@
 docker build -t pmtr-rhel .
 
 echo "If the build completed successfully you can now pick up the"
-echo "build products from ${TOP} which is configured as /opt."
+echo "build products from \${TOP} which is configured as /opt."
 echo
 echo "To explore the build container:"
 echo "docker run -ti pmtr-rhel /bin/bash"

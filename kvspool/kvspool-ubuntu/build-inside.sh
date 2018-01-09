@@ -4,15 +4,14 @@
 # products are installed under ${TOP}.
 
 SHR_REV=ee7347347589248a0ecd2fea852070e9c97a8d05
-FLUXCAP_REV=a20be2417a77eb2f50987da2bfd71aaa4ade4ec0
-LIBUT_REV=e293a1a388340bc5a1c0c542f8ec5d1c8ed85fd7
-TPL_REV=7adbfa38c97c199056e8455803053bbf8e0470e8
-UTHASH_REV=5e8de9e8c9c0b98fe110708fe7a53b2df3a05210
+JANSSON_REV=b23201bb1a566d7e4ea84b76b3dcf2efcc025dac
+KVSPOOL_REV=a57a6952665415bc752e3146bb5f539b576399f9
 
 BUILD=/tmp/build.$$
 SRC=/tmp/src.$$
 SHR=${SRC}/shr
-FLUXCAP=${SRC}/fluxcap
+KVSPOOL=${SRC}/kvspool
+JANSSON=${SRC}/jansson
 TOP=/opt # install root
 BUNDLES=/tmp/bundles
 
@@ -30,30 +29,29 @@ BUNDLES=/tmp/bundles
 ########################################
 tar xf /tmp/bundles.tar -C /tmp
 git clone -b master ${BUNDLES}/shr.bundle ${SHR}
-git clone -b master ${BUNDLES}/fluxcap.bundle ${FLUXCAP}
-git clone -b master ${BUNDLES}/tpl.bundle ${FLUXCAP}/lib/tpl
-git clone -b master ${BUNDLES}/libut.bundle ${FLUXCAP}/lib/libut
-git clone -b master ${BUNDLES}/uthash.bundle ${FLUXCAP}/lib/libut/uthash
-
-########################################
-# clone sources
-########################################
-#git clone --recursive https://github.com/troydhanson/shr.git ${SHR}
-#git clone --recursive https://github.com/troydhanson/fluxcap.git ${FLUXCAP}
+git clone -b master ${BUNDLES}/jansson.bundle ${JANSSON}
+git clone -b master ${BUNDLES}/kvspool.bundle ${KVSPOOL}
 
 ########################################
 # check out pinned revisions
 ########################################
 (cd ${SHR}; git checkout ${SHR_REV})
-(cd ${FLUXCAP}; git checkout ${FLUXCAP_REV})
-(cd ${FLUXCAP}/lib/tpl; git checkout ${TPL_REV})
-(cd ${FLUXCAP}/lib/libut; git checkout ${LIBUT_REV})
-(cd ${FLUXCAP}/lib/libut/uthash; git checkout ${UTHASH_REV})
+(cd ${JANSSON}; git checkout ${JANSSON_REV})
+(cd ${JANSSON}; git checkout ${KVSPOOL_REV})
 
 ########################################
 # conduct builds outside of source trees
 ########################################
-mkdir -p ${BUILD} ${BUILD}/shr ${BUILD}/fluxcap
+mkdir -p ${BUILD} ${BUILD}/shr ${BUILD}/jansson \
+  ${BUILD}/kvspool 
+
+########################################
+# jansson
+########################################
+cd ${BUILD}/jansson
+autoreconf -ivf ${JANSSON}
+${JANSSON}/configure --prefix=${TOP}
+make && make install
 
 ########################################
 # shr
@@ -64,12 +62,12 @@ ${SHR}/configure --prefix=${TOP}
 make && make install
 
 ########################################
-# fluxcap
+# kvspool
 ########################################
-cd ${BUILD}/fluxcap
-autoreconf -ivf ${FLUXCAP}
-${FLUXCAP}/configure --prefix=${TOP} \
-  CPPFLAGS="-I${TOP}/include"        \
+cd ${BUILD}/kvspool
+autoreconf -ivf ${KVSPOOL}
+${KVSPOOL}/configure --prefix=${TOP} \
+  CPPFLAGS="-I${TOP}/include"    \
   LDFLAGS="-L${TOP}/lib -L${TOP}/lib64"
 make && make install
 

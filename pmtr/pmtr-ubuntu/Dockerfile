@@ -1,6 +1,6 @@
 FROM ubuntu:16.04
 
-RUN apt update
+RUN apt update -y
 RUN apt install -y make gcc autoconf automake \
         libtool git
 

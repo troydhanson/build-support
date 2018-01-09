@@ -3,9 +3,11 @@
 # the build is conducted and the resulting
 # products are installed under ${TOP}.
 
-SHR_REV=5a009e01cf7fc47c949a21681f6397e66aba9c3b
+SHR_REV=ee7347347589248a0ecd2fea852070e9c97a8d05
 CCR_REV=e95b3884d5068b60eb2f87088c8af73767de463e
 JANSSON_REV=b23201bb1a566d7e4ea84b76b3dcf2efcc025dac
+LIBUT_REV=e293a1a388340bc5a1c0c542f8ec5d1c8ed85fd7
+UTHASH_REV=5e8de9e8c9c0b98fe110708fe7a53b2df3a05210
 
 BUILD=/tmp/build.$$
 SRC=/tmp/src.$$
@@ -13,19 +15,41 @@ SHR=${SRC}/shr
 CCR=${SRC}/ccr
 JANSSON=${SRC}/jansson
 TOP=/opt # install root
+BUNDLES=/tmp/bundles
+
+########################################
+# clone sources
+#
+# this version clones from a saved bundle
+#
+# to make a bundle from the head of an 
+# existing cloned repo you can use 
+# bundle create /tmp/<name>.bundle @
+# However, note that its submodules and
+# and of their recursive submodules need
+# to be bundled and cloned into place too.
+########################################
+tar xf /tmp/bundles.tar -C /tmp
+git clone -b master ${BUNDLES}/shr.bundle ${SHR}
+git clone -b master ${BUNDLES}/ccr.bundle ${CCR}
+git clone -b master ${BUNDLES}/libut.bundle ${CCR}/lib/libut
+git clone -b master ${BUNDLES}/uthash.bundle ${CCR}/lib/libut/uthash
+git clone -b master ${BUNDLES}/jansson.bundle ${JANSSON}
 
 ########################################
 # clone sources
 ########################################
-git clone --recursive https://github.com/troydhanson/shr.git ${SHR}
-git clone --recursive https://github.com/troydhanson/ccr.git ${CCR}
-git clone https://github.com/akheron/jansson.git ${JANSSON}
+#git clone --recursive https://github.com/troydhanson/shr.git ${SHR}
+#git clone --recursive https://github.com/troydhanson/ccr.git ${CCR}
+#git clone https://github.com/akheron/jansson.git ${JANSSON}
 
 ########################################
 # check out pinned revisions
 ########################################
 (cd ${SHR}; git checkout ${SHR_REV})
 (cd ${CCR}; git checkout ${CCR_REV})
+(cd ${CCR}/lib/libut; git checkout ${LIBUT_REV})
+(cd ${CCR}/lib/libut/uthash; git checkout ${UTHASH_REV})
 (cd ${JANSSON}; git checkout ${JANSSON_REV})
 
 ########################################
