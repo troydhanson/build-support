@@ -3,8 +3,8 @@
 # the build is conducted and the resulting
 # products are installed under ${TOP}.
 
-SHR_REV=88ebce528c2a0cda2c5a00205f3920c921edb978
-FLUXCAP_REV=a20be2417a77eb2f50987da2bfd71aaa4ade4ec0
+SHR_REV=a86524ac213d0c41b4a993b44b6af48b0aa49911
+FLUXCAP_REV=2abda82af32669f923412bf343ce73c511ef4b74
 LIBUT_REV=e293a1a388340bc5a1c0c542f8ec5d1c8ed85fd7
 TPL_REV=7adbfa38c97c199056e8455803053bbf8e0470e8
 UTHASH_REV=5e8de9e8c9c0b98fe110708fe7a53b2df3a05210
