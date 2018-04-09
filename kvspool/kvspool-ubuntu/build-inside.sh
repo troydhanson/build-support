@@ -28,16 +28,16 @@ BUNDLES=/tmp/bundles
 # to be bundled and cloned into place too.
 ########################################
 tar xf /tmp/bundles.tar -C /tmp
-git clone -b master ${BUNDLES}/shr.bundle ${SHR}
-git clone -b master ${BUNDLES}/jansson.bundle ${JANSSON}
-git clone -b master ${BUNDLES}/kvspool.bundle ${KVSPOOL}
+git clone -q -b master ${BUNDLES}/shr.bundle ${SHR}
+git clone -q -b master ${BUNDLES}/jansson.bundle ${JANSSON}
+git clone -q -b master ${BUNDLES}/kvspool.bundle ${KVSPOOL}
 
 ########################################
 # check out pinned revisions
 ########################################
-(cd ${SHR}; git checkout ${SHR_REV})
-(cd ${JANSSON}; git checkout ${JANSSON_REV})
-(cd ${JANSSON}; git checkout ${KVSPOOL_REV})
+(cd ${SHR}; git checkout -q ${SHR_REV})
+(cd ${JANSSON}; git checkout -q ${JANSSON_REV})
+(cd ${JANSSON}; git checkout -q ${KVSPOOL_REV})
 
 ########################################
 # conduct builds outside of source trees

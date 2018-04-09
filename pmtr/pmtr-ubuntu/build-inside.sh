@@ -13,12 +13,12 @@ TOP=/opt # install root
 ########################################
 # clone sources
 ########################################
-git clone https://github.com/troydhanson/pmtr.git ${PMTR}
+git clone -q https://github.com/troydhanson/pmtr.git ${PMTR}
 
 ########################################
 # check out pinned revisions
 ########################################
-(cd ${PMTR}; git checkout ${PMTR_REV})
+(cd ${PMTR}; git checkout -q ${PMTR_REV})
 
 ########################################
 # conduct builds outside of source trees

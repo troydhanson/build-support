@@ -30,28 +30,28 @@ BUNDLES=/tmp/bundles
 # to be bundled and cloned into place too.
 ########################################
 tar xf /tmp/bundles.tar -C /tmp
-git clone -b master ${BUNDLES}/shr.bundle ${SHR}
-git clone -b master ${BUNDLES}/ccr.bundle ${CCR}
-git clone -b master ${BUNDLES}/libut.bundle ${CCR}/lib/libut
-git clone -b master ${BUNDLES}/uthash.bundle ${CCR}/lib/libut/uthash
-git clone -b master ${BUNDLES}/jansson.bundle ${JANSSON}
+git clone -q -b master ${BUNDLES}/shr.bundle ${SHR}
+git clone -q -b master ${BUNDLES}/ccr.bundle ${CCR}
+git clone -q -b master ${BUNDLES}/libut.bundle ${CCR}/lib/libut
+git clone -q -b master ${BUNDLES}/uthash.bundle ${CCR}/lib/libut/uthash
+git clone -q -b master ${BUNDLES}/jansson.bundle ${JANSSON}
 
 
 ########################################
 # clone sources
 ########################################
-#git clone --recursive https://github.com/troydhanson/shr.git ${SHR}
-#git clone --recursive https://github.com/troydhanson/ccr.git ${CCR}
-#git clone https://github.com/akheron/jansson.git ${JANSSON}
+#git clone -q --recursive https://github.com/troydhanson/shr.git ${SHR}
+#git clone -q --recursive https://github.com/troydhanson/ccr.git ${CCR}
+#git clone -q https://github.com/akheron/jansson.git ${JANSSON}
 
 ########################################
 # check out pinned revisions
 ########################################
-(cd ${SHR}; git checkout ${SHR_REV})
-(cd ${CCR}; git checkout ${CCR_REV})
-(cd ${CCR}/lib/libut; git checkout ${LIBUT_REV})
-(cd ${CCR}/lib/libut/uthash; git checkout ${UTHASH_REV})
-(cd ${JANSSON}; git checkout ${JANSSON_REV})
+(cd ${SHR}; git checkout -q ${SHR_REV})
+(cd ${CCR}; git checkout -q ${CCR_REV})
+(cd ${CCR}/lib/libut; git checkout -q ${LIBUT_REV})
+(cd ${CCR}/lib/libut/uthash; git checkout -q ${UTHASH_REV})
+(cd ${JANSSON}; git checkout -q ${JANSSON_REV})
 
 ########################################
 # conduct builds outside of source trees

@@ -29,26 +29,26 @@ BUNDLES=/tmp/bundles
 # to be bundled and cloned into place too.
 ########################################
 tar xf /tmp/bundles.tar -C /tmp
-git clone -b master ${BUNDLES}/shr.bundle ${SHR}
-git clone -b master ${BUNDLES}/fluxcap.bundle ${FLUXCAP}
-git clone -b master ${BUNDLES}/tpl.bundle ${FLUXCAP}/lib/tpl
-git clone -b master ${BUNDLES}/libut.bundle ${FLUXCAP}/lib/libut
-git clone -b master ${BUNDLES}/uthash.bundle ${FLUXCAP}/lib/libut/uthash
+git clone -q -b master ${BUNDLES}/shr.bundle ${SHR}
+git clone -q -b master ${BUNDLES}/fluxcap.bundle ${FLUXCAP}
+git clone -q -b master ${BUNDLES}/tpl.bundle ${FLUXCAP}/lib/tpl
+git clone -q -b master ${BUNDLES}/libut.bundle ${FLUXCAP}/lib/libut
+git clone -q -b master ${BUNDLES}/uthash.bundle ${FLUXCAP}/lib/libut/uthash
 
 ########################################
 # clone sources
 ########################################
-#git clone --recursive https://github.com/troydhanson/shr.git ${SHR}
-#git clone --recursive https://github.com/troydhanson/fluxcap.git ${FLUXCAP}
+#git clone -q --recursive https://github.com/troydhanson/shr.git ${SHR}
+#git clone -q --recursive https://github.com/troydhanson/fluxcap.git ${FLUXCAP}
 
 ########################################
 # check out pinned revisions
 ########################################
-(cd ${SHR}; git checkout ${SHR_REV})
-(cd ${FLUXCAP}; git checkout ${FLUXCAP_REV})
-(cd ${FLUXCAP}/lib/tpl; git checkout ${TPL_REV})
-(cd ${FLUXCAP}/lib/libut; git checkout ${LIBUT_REV})
-(cd ${FLUXCAP}/lib/libut/uthash; git checkout ${UTHASH_REV})
+(cd ${SHR}; git checkout -q ${SHR_REV})
+(cd ${FLUXCAP}; git checkout -q ${FLUXCAP_REV})
+(cd ${FLUXCAP}/lib/tpl; git checkout -q ${TPL_REV})
+(cd ${FLUXCAP}/lib/libut; git checkout -q ${LIBUT_REV})
+(cd ${FLUXCAP}/lib/libut/uthash; git checkout -q ${UTHASH_REV})
 
 ########################################
 # conduct builds outside of source trees
