@@ -3,7 +3,7 @@
 # the build is conducted and the resulting
 # products are installed under ${TOP}.
 
-SHR_REV=a86524ac213d0c41b4a993b44b6af48b0aa49911
+SHR_REV=bc817c9d0f254be8fd331c3b300807f33664ea3d
 FLUXCAP_REV=2abda82af32669f923412bf343ce73c511ef4b74
 LIBUT_REV=e293a1a388340bc5a1c0c542f8ec5d1c8ed85fd7
 TPL_REV=7adbfa38c97c199056e8455803053bbf8e0470e8
