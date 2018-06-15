@@ -34,6 +34,14 @@ Set up git to sign commits by default, and tell it what key to use.
     gpg --list-secret-keys --keyid-format LONG
     git config --global user.signingkey <keyid>
 
+The <keyid> is the long, 40-hex character identifier
+listed on the line after the `sec rsa2048/...` line 
+in the key listing.
+
 Set this environment variable to help GPG prompt for passphrase:
 
     echo 'export GPG_TTY=$(tty)' >> ~/.bash_profile
+
+or
+
+    echo 'export GPG_TTY=$(tty)' >> ~/.bashrc
