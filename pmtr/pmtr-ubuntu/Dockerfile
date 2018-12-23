@@ -1,7 +1,7 @@
 FROM ubuntu:16.04
 
-RUN apt update -y
-RUN apt install -y make gcc autoconf automake \
+RUN apt-get update && apt-get install -y \
+        make gcc autoconf automake \
         libtool git
 
 COPY build-inside.sh /tmp

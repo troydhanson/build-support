@@ -3,10 +3,9 @@
 # the build is conducted and the resulting
 # products are installed under ${TOP}.
 
-SHR_REV=bc817c9d0f254be8fd331c3b300807f33664ea3d
-FLUXCAP_REV=2abda82af32669f923412bf343ce73c511ef4b74
+SHR_REV=8dd76463863623d923b3fa23510dd22a146f0d11
+FLUXCAP_REV=7fce5c4d3a0ef2d94b1089bc7e1a10cda90d0851
 LIBUT_REV=e293a1a388340bc5a1c0c542f8ec5d1c8ed85fd7
-TPL_REV=7adbfa38c97c199056e8455803053bbf8e0470e8
 UTHASH_REV=5e8de9e8c9c0b98fe110708fe7a53b2df3a05210
 
 BUILD=/tmp/build.$$
@@ -31,7 +30,6 @@ BUNDLES=/tmp/bundles
 tar xf /tmp/bundles.tar -C /tmp
 git clone -q -b master ${BUNDLES}/shr.bundle ${SHR}
 git clone -q -b master ${BUNDLES}/fluxcap.bundle ${FLUXCAP}
-git clone -q -b master ${BUNDLES}/tpl.bundle ${FLUXCAP}/lib/tpl
 git clone -q -b master ${BUNDLES}/libut.bundle ${FLUXCAP}/lib/libut
 git clone -q -b master ${BUNDLES}/uthash.bundle ${FLUXCAP}/lib/libut/uthash
 
@@ -46,7 +44,6 @@ git clone -q -b master ${BUNDLES}/uthash.bundle ${FLUXCAP}/lib/libut/uthash
 ########################################
 (cd ${SHR}; git checkout -q ${SHR_REV})
 (cd ${FLUXCAP}; git checkout -q ${FLUXCAP_REV})
-(cd ${FLUXCAP}/lib/tpl; git checkout -q ${TPL_REV})
 (cd ${FLUXCAP}/lib/libut; git checkout -q ${LIBUT_REV})
 (cd ${FLUXCAP}/lib/libut/uthash; git checkout -q ${UTHASH_REV})
 

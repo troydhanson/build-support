@@ -5,8 +5,8 @@ RUN yum install -y git make cmake gcc autoconf automake \
         libtool
 
 # enable epel
-RUN yum --enablerepo=extras install -y epel-release
-RUN yum install -y ncurses-devel
+#RUN yum --enablerepo=extras install -y epel-release
+#RUN yum install -y ncurses-devel
 
 COPY bundles.tar /tmp
 COPY build-inside.sh /tmp

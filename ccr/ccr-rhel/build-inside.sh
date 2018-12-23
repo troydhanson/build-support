@@ -3,8 +3,8 @@
 # the build is conducted and the resulting
 # products are installed under ${TOP}.
 
-SHR_REV=a86524ac213d0c41b4a993b44b6af48b0aa49911
-CCR_REV=99f31966030d0b48b39d08fe0894942151adf34c
+SHR_REV=8dd76463863623d923b3fa23510dd22a146f0d11
+CCR_REV=a9c045471130b781e1c8b8e16ba0fee8fcaa71c5
 JANSSON_REV=b23201bb1a566d7e4ea84b76b3dcf2efcc025dac
 LIBUT_REV=e293a1a388340bc5a1c0c542f8ec5d1c8ed85fd7
 UTHASH_REV=5e8de9e8c9c0b98fe110708fe7a53b2df3a05210
@@ -80,8 +80,9 @@ make && make install
 cd ${BUILD}/ccr
 autoreconf -ivf ${CCR}
 ${CCR}/configure --prefix=${TOP} \
-  CPPFLAGS="-I${TOP}/include"    \
-  LDFLAGS="-L${TOP}/lib -L${TOP}/lib64"
+  CPPFLAGS="-I${CCR}/cc -I${CCR}/ccr/src -I${TOP}/include"    \
+  LDFLAGS="-L${TOP}/lib -L${TOP}/lib64 -L${BUILD}/ccr/ccr/src"
+
 make && make install
 
 
