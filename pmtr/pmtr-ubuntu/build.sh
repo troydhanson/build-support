@@ -1,5 +1,6 @@
 #!/bin/bash
 
+tar cf bundles.tar -C ../.. bundles
 docker build -t pmtr .
 
 echo "If the build completed successfully you can now pick up the"
