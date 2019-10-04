@@ -36,7 +36,7 @@ git clone -q -b master ${BUNDLES}/uthash.bundle ${FLUXCAP}/lib/libut/uthash
 ########################################
 # clone sources
 ########################################
-#git clone -q https://github.com/troydhanson/shr.git ${SHR}
+#git clone -q --recursive https://github.com/troydhanson/shr.git ${SHR}
 #git clone -q --recursive https://github.com/troydhanson/fluxcap.git ${FLUXCAP}
 
 ########################################
